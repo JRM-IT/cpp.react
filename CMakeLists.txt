@@ -19,7 +19,20 @@ add_library(CppReact
 	src/logging/EventLog.cpp
 	src/logging/EventRecords.cpp)
 
-target_link_libraries(CppReact tbb)
+### TBB
+option(find_tbb_package "Search for TBB using find_package?" OFF)
+
+if (find_tbb_package AND NOT DEFINED TBB_FOUND)
+	find_package(TBB REQUIRED tbb)
+endif()
+
+if (DEFINED TBB_IMPORTED_TARGETS)
+	set(tbb_lib ${TBB_IMPORTED_TARGETS})
+else()
+	set(tbb_lib tbb)
+endif()
+
+target_link_libraries(CppReact ${tbb_lib})
 
 ### examples/ 
 option(build_examples "Build examples?" ON)
