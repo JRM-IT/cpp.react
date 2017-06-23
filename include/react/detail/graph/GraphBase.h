@@ -216,26 +216,26 @@ public:
     template <typename D, typename TNode>
     void Attach(TNode& node) const
     {
-        apply(AttachFunctor<D,TNode,TDeps...>{ node }, deps_);
+        impl::apply(AttachFunctor<D,TNode,TDeps...>{ node }, deps_);
     }
 
     template <typename D, typename TNode>
     void Detach(TNode& node) const
     {
-        apply(DetachFunctor<D,TNode,TDeps...>{ node }, deps_);
+		impl::apply(DetachFunctor<D,TNode,TDeps...>{ node }, deps_);
     }
 
     template <typename D, typename TNode, typename TFunctor>
     void AttachRec(const TFunctor& functor) const
     {
         // Same memory layout, different func
-        apply(reinterpret_cast<const AttachFunctor<D,TNode,TDeps...>&>(functor), deps_);
+		impl::apply(reinterpret_cast<const AttachFunctor<D,TNode,TDeps...>&>(functor), deps_);
     }
 
     template <typename D, typename TNode, typename TFunctor>
     void DetachRec(const TFunctor& functor) const
     {
-        apply(reinterpret_cast<const DetachFunctor<D,TNode,TDeps...>&>(functor), deps_);
+		impl::apply(reinterpret_cast<const DetachFunctor<D,TNode,TDeps...>&>(functor), deps_);
     }
 
 public:

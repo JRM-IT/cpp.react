@@ -189,7 +189,7 @@ public:
 
     S Evaluate() 
     {
-        return apply(EvalFunctor( func_ ), this->deps_);
+        return impl::apply(EvalFunctor( func_ ), this->deps_);
     }
 
 private:
