@@ -197,7 +197,7 @@ void EngineBase::OnNodeDetach(Node& node, Node& parent)
     parent.Successors.Remove(node);
 }
 
-void EngineBase::OnInputChange(Node& node, Turn& turn)
+void EngineBase::OnInputChange(Node& node, Turn& /*turn*/)
 {
     changedInputs_.push_back(&node);
     node.State = ENodeState::changed;
@@ -244,17 +244,17 @@ void EngineBase::Propagate(Turn& turn)
     changedInputs_.clear();
 }
 
-void EngineBase::OnNodePulse(Node& node, Turn& turn)
+void EngineBase::OnNodePulse(Node& node, Turn& /*turn*/)
 {
     node.State = ENodeState::changed;
 }
 
-void EngineBase::OnNodeIdlePulse(Node& node, Turn& turn)
+void EngineBase::OnNodeIdlePulse(Node& node, Turn& /*turn*/)
 {
     node.State = ENodeState::unchanged;
 }
 
-void EngineBase::OnDynamicNodeAttach(Node& node, Node& parent, Turn& turn)
+void EngineBase::OnDynamicNodeAttach(Node& node, Node& parent, Turn& /*turn*/)
 {// parent.ShiftMutex (write)
     NodeShiftMutexT::scoped_lock lock(parent.ShiftMutex, true);
         
@@ -273,7 +273,7 @@ void EngineBase::OnDynamicNodeAttach(Node& node, Node& parent, Turn& turn)
     }
 }// ~parent.ShiftMutex (write)
 
-void EngineBase::OnDynamicNodeDetach(Node& node, Node& parent, Turn& turn)
+void EngineBase::OnDynamicNodeDetach(Node& node, Node& parent, Turn& /*turn*/)
 {// parent.ShiftMutex (write)
     NodeShiftMutexT::scoped_lock lock(parent.ShiftMutex, true);
 

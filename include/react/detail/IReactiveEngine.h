@@ -31,24 +31,24 @@ struct IReactiveEngine
     using NodeT = TNode;
     using TurnT = TTurn;
 
-    void OnTurnAdmissionStart(TurnT& turn)  {}
-    void OnTurnAdmissionEnd(TurnT& turn)    {}
+    void OnTurnAdmissionStart(TurnT& /*turn*/)  {}
+    void OnTurnAdmissionEnd(TurnT& /*turn*/)    {}
 
-    void OnInputChange(NodeT& node, TurnT& turn)    {}
+    void OnInputChange(NodeT& /*node*/, TurnT& /*turn*/)    {}
 
-    void Propagate(TurnT& turn)  {}
+    void Propagate(TurnT& /*turn*/)  {}
 
-    void OnNodeCreate(NodeT& node)  {}
-    void OnNodeDestroy(NodeT& node) {}
+    void OnNodeCreate(NodeT& /*node*/)  {}
+    void OnNodeDestroy(NodeT& /*node*/) {}
 
-    void OnNodeAttach(NodeT& node, NodeT& parent)   {}
-    void OnNodeDetach(NodeT& node, NodeT& parent)   {}
+    void OnNodeAttach(NodeT& /*node*/, NodeT& /*parent*/)   {}
+    void OnNodeDetach(NodeT& /*node*/, NodeT& /*parent*/)   {}
 
-    void OnNodePulse(NodeT& node, TurnT& turn)      {}
-    void OnNodeIdlePulse(NodeT& node, TurnT& turn)  {}
+    void OnNodePulse(NodeT& /*node*/, TurnT& /*turn*/)      {}
+    void OnNodeIdlePulse(NodeT& /*node*/, TurnT& /*turn*/)  {}
 
-    void OnDynamicNodeAttach(NodeT& node, NodeT& parent, TurnT& turn)    {}
-    void OnDynamicNodeDetach(NodeT& node, NodeT& parent, TurnT& turn)    {}
+    void OnDynamicNodeAttach(NodeT& /*node*/, NodeT& /*parent*/, TurnT& /*turn*/)    {}
+    void OnDynamicNodeDetach(NodeT& /*node*/, NodeT& /*parent*/, TurnT& /*turn*/)    {}
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

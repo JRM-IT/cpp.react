@@ -271,12 +271,12 @@ public:
     class QueueEntry
     {
     public:
-        explicit QueueEntry(TransactionFlagsT flags) {}
+        explicit QueueEntry(TransactionFlagsT /*flags*/) {}
 
         void RunMergedInputs()  {}
 
         size_t  GetWaitingStatePtrCount() const    { return 0; }
-        void    MoveWaitingStatePtrs(std::vector<WaitingStatePtrT>& out)  {}
+        void    MoveWaitingStatePtrs(std::vector<WaitingStatePtrT>& /*out*/)  {}
 
         void Release()  {}
 
@@ -284,13 +284,13 @@ public:
     };
 
     template <typename F>
-    bool TryMergeSync(F&& inputFunc) { return false; }
+    bool TryMergeSync(F&& /*inputFunc*/) { return false; }
 
     template <typename F>
-    bool TryMergeAsync(F&& inputFunc, WaitingStatePtrT&& waitingStatePtr) { return false; }
+    bool TryMergeAsync(F&& /*inputFunc*/, WaitingStatePtrT&& /*waitingStatePtr*/) { return false; }
 
-    void EnterQueue(QueueEntry& turn)   {}
-    void ExitQueue(QueueEntry& turn)    {}
+    void EnterQueue(QueueEntry& /*turn*/)   {}
+    void ExitQueue(QueueEntry& /*turn*/)    {}
 };
 
 // Thread-safe implementation
@@ -513,16 +513,16 @@ template <typename D>
 struct AsyncWorker<D, consecutive_input>
 {
 public:
-    AsyncWorker(InputManager<D>& mgr)
+    AsyncWorker(InputManager<D>& /*mgr*/)
     {}
 
-    void PushItem(AsyncItem&& item)     { assert(false); }
+    void PushItem(AsyncItem&& /*item*/)     { assert(false); }
 
-    void PopItem(AsyncItem& item)       { assert(false); }
-    bool TryPopItem(AsyncItem& item)    { assert(false); return false; }
+    void PopItem(AsyncItem& /*item*/)       { assert(false); }
+    bool TryPopItem(AsyncItem& /*item*/)    { assert(false); return false; }
 
-    bool IncrementItemCount(size_t n)   { assert(false); return false; }
-    bool DecrementItemCount(size_t n)   { assert(false); return false; }
+    bool IncrementItemCount(size_t /*n*/)   { assert(false); return false; }
+    bool DecrementItemCount(size_t /*n*/)   { assert(false); return false; }
 
     void Start()                        { assert(false); }
 };

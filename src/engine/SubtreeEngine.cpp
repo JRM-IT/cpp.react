@@ -214,7 +214,7 @@ void EngineBase::OnNodePulse(Node& node, Turn& turn)
         processChildren(node, turn);
 }
 
-void EngineBase::OnNodeIdlePulse(Node& node, Turn& turn)
+void EngineBase::OnNodeIdlePulse(Node& node, Turn& /*turn*/)
 {
     if (isInPhase2_)
         node.ClearChangedFlag();
@@ -246,7 +246,7 @@ void EngineBase::OnDynamicNodeDetach(Node& node, Node& parent, Turn& turn)
         OnNodeDetach(node, parent);
 }
 
-void EngineBase::applyAsyncDynamicAttach(Node& node, Node& parent, Turn& turn)
+void EngineBase::applyAsyncDynamicAttach(Node& node, Node& parent, Turn& /*turn*/)
 {// parent.ShiftMutex (write)
     NodeShiftMutexT::scoped_lock    lock(parent.ShiftMutex, true);
         
@@ -270,14 +270,14 @@ void EngineBase::applyAsyncDynamicAttach(Node& node, Node& parent, Turn& turn)
     }
 }// ~parent.ShiftMutex (write)
 
-void EngineBase::applyAsyncDynamicDetach(Node& node, Node& parent, Turn& turn)
+void EngineBase::applyAsyncDynamicDetach(Node& node, Node& parent, Turn& /*turn*/)
 {// parent.ShiftMutex (write)
     NodeShiftMutexT::scoped_lock    lock(parent.ShiftMutex, true);
 
     parent.Successors.Remove(node);
 }// ~parent.ShiftMutex (write)
 
-void EngineBase::processChildren(Node& node, Turn& turn)
+void EngineBase::processChildren(Node& node, Turn& /*turn*/)
 {
     // Add children to queue
     for (auto* succ : node.Successors)

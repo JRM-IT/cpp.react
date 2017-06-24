@@ -21,7 +21,7 @@ using ObjectId = uintptr_t;
 template <typename O>
 ObjectId GetObjectId(const O& obj)
 {
-	return (ObjectId)&obj;
+	return static_cast<ObjectId&>(obj);
 }
 
 using UpdateDurationT = std::chrono::duration<uint, std::micro>;
